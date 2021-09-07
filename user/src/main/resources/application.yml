@@ -1,0 +1,38 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: demo-user
+  datasource:
+    url:  jdbc:mysql://127.0.0.1:3306/example?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: root
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-password: 123456
+        login-username: syf
+        url-pattern: /druid/*
+      web-stat-filter:
+        enabled: true
+      filter:
+        wall:
+          enabled: true
+        stat:
+          enabled: true
+        slf4j:
+          enabled: true
+
+
+# nacos 配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+
+
+logging:
+  level:
+    com.readwite.application: debug
