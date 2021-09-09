@@ -48,7 +48,7 @@ seata:
       server-addr: http://localhost:2379
   registry:
     # support: nacos 、 eureka 、 redis 、 zk  、 consul 、 etcd3 、 sofa
-    type: nacos
+    type: file
     nacos:
       application: seata-server
       server-addr: ${NACOS_SERVER}:${NACOS_PORT}

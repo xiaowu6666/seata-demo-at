@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sheyifeng.tk.seata.storage.model.StorageModel;
 import sheyifeng.tk.seata.storage.service.StorageService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/storage")
@@ -20,5 +23,12 @@ public class StorageController {
         log.info("insert {}",i);
         return storageModel;
     }
+    
+    @PostMapping("addEntry")
+    public boolean addEntry (@RequestBody StorageModel storageModel ) {
+        storageService.insert(storageModel);
+        return true;
+    }
+    
     
 }

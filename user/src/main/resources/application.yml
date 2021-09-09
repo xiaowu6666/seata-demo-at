@@ -23,16 +23,27 @@ spring:
           enabled: true
         slf4j:
           enabled: true
+#seata 配置
+seata:
+  application-id: seata-server
+  config:
+    type: file
+    file:
+      name: file.conf
+  registry:
+    type: nacos
+    nacos:
+      group: SEATA_GROUP
+      application: seata-server
+      server-addr: ${spring.cloud.nacos.discovery.server-addr}
 
 
 # nacos 配置
   cloud:
+    alibaba:
+      seata:
+        # http://seata.io/zh-cn/docs/user/txgroup/transaction-group.html
+        tx-service-group: my_test_tx_group
     nacos:
       discovery:
         server-addr: localhost:8848
-
-
-
-logging:
-  level:
-    com.readwite.application: debug

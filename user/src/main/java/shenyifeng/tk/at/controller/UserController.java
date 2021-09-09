@@ -1,9 +1,7 @@
 package shenyifeng.tk.at.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import shenyifeng.tk.at.model.UserModel;
 import shenyifeng.tk.at.remote.StorageService;
 import shenyifeng.tk.at.service.UserService;
@@ -19,14 +17,21 @@ public class UserController {
     private StorageService storageService;
 
     @GetMapping("/add/user")
-    public boolean add(UserModel userModel){
+    public boolean add(UserModel userModel) {
         userService.insert(userModel);
         return true;
     }
-    
+
     @GetMapping("add/storage")
-    public boolean addStorage(){
-        storageService.add("xkdiid",100,14);
+    public boolean addStorage() {
+        storageService.add("xkdiid", 100, 14);
         return true;
     }
+
+    @PostMapping("/addEntry")
+    public boolean addEntry(@RequestBody UserModel userModel) {
+        userService.insert(userModel);
+        return true;
+    }
+
 }

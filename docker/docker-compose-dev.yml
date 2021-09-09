@@ -2,7 +2,7 @@ version: "3"
 services:
   nacos:
     image: nacos/nacos-server:latest
-    container_name: nacos-standalone-mysql
+    container_name: nacos
     env_file:
       - ./nacos-standlone-mysql.env
     volumes:
@@ -25,13 +25,16 @@ services:
     ports:
       - "3306:3306"
   seata-server:
-    image: seataio/seata-server
+    image: seataio/seata-server:1.4.2
     container_name: seata-server
+    hostname: seata-server
     env_file:
       - ./seata/seata-server.env
     depends_on:
-      - nacos      
+      - nacos
     ports:
       - "8091:8091"
     volumes:
-      - ./seata/application.yml:/seata-server/resources/application.yml
+      - ./seata/file.conf:/seata-server/resources/file.conf
+      - ./seata/registry.conf:/seata-server/resources/registry.conf
+    restart: always
